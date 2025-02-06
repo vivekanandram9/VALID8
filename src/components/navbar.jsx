@@ -22,15 +22,21 @@ function Navbar() {
                
                 <ul className='flex items-center space-x-5'>
                     
-                    <li>
+                    {/*<li>
                         <NavLink to="/Dashboard">
                             Dashboard
                         </NavLink>
-                    </li>
+                    </li>*/}
                     <li>
                         <NavLink to="/Signup">
                          Get Started
                         </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/Login">
+                           <button className='p-1 w-[4rem]  border rounded-xl text-sm bg-white  text-lred hover:p-2' type='button'>Login</button>
+                        </NavLink>
+                        
                     </li>
                 </ul>
             </div>
