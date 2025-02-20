@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import axios from "axios"
+
 
 
 function Dashboard() {
@@ -7,13 +8,58 @@ function Dashboard() {
   const [inputValue, setInputValue] = useState("");
   const [result, setResult] = useState("");
   const [activeTab, setActiveTab] = useState("Query Params");
+  const [queryParams, setQueryParams] = useState([]);
+  const [headers, setHeaders] = useState([]);
+
+  const [jsonBody, setJsonbody] = useState("{}");
+  const [status, setStatus] = useState(null);
+  const [responseHeaders, setResponseHeaders] = useState(null);
+
+  
+
+  
+
+  useEffect(() => {
+    console.log("Component mounted. DOM is available");
+  }, []);
+
+  const addQueryParam = () => {
+    setQueryParams([...queryParams, {key: "", value: ""}]);
+  };
+  const addHeader = () => {
+    setHeaders([...headers, {key: "", value: ""}]);
+  };
+
+  const removeQueryParam = (index) => {
+    setQueryParams(queryParams.filter((_, i) => i !== index));
+  };
+  const removeHeader = (index) => {
+    setHeaders(headers.filter((_, i) => i !== index));
+  };
+
+  
+
+  
+
+  
 
   const handleSendRequest = async () => {
     try {
-      const response = await axios({
+      const options = {
         url: inputValue,
         method: dropdownValue,
-      });
+        params: Object.fromEntries(queryParams.map(q => [q.key, q.value])),
+        headers: Object.fromEntries(headers.map(h => [h.key, h.value]))
+
+      };
+
+      if(["POST", "PUT"].includes(dropdownValue)){
+        options.data = JSON.parse(jsonBody);
+      }
+
+      const response = await axios(options);
+      setStatus(response.status);
+      setResponseHeaders(response.headers);
       setResult(JSON.stringify(response.data, null, 2));
     } catch (error) {
       setResult(`Error: ${error.message}`);
@@ -72,44 +118,90 @@ function Dashboard() {
 
       {/* Tab Content */}
       <div className="bg-white p-4 border border-gray-300 rounded-lg shadow-md">
-        {activeTab === "Query Params" &&  <div className="query-param">
-          <div className="data-query" id="request-query">
-          <form data-key-value-pair className="flex">
-          <input className="border border-black w-[15rem] p-3 m-2" type="text" placeholder="key" />
-          <input className="border border-black w-[15rem] p-3 m-2" type="text" placeholder="value" />
-          <button type="button" className="mt-2 border border-red-500 bg-white text-red-500 w-[5rem] p-1 rounded-xl border-2 hover:text-white hover:bg-red-500 relative bottom-1">Remove</button>
-        </form>
+        {activeTab === "Query Params" &&  (
+        <div className="query-param">
+          {queryParams.map((param, index) => (
+            <div key={index}>
+              <input
+              className="border border-black m-2 p-2 w-[15rem]"
+              type="text"
+              placeholder="key"
+              value={param.key}
+              onChange={(e) => {
+                const newQueryParams = [...queryParams];
+                newQueryParams[index].key = e.target.value;
+                setQueryParams(newQueryParams);
+              }}
+              />
+              <input
+              className="border border-black m-2 p-2 w-[15rem]"
+              type="text"
+              placeholder="value"
+              value={param.value}
+              onChange={(e) => {
+                const newQueryParams = [...queryParams];
+                newQueryParams[index].value = e.target.value;
+                setQueryParams(newQueryParams);
+              }} />
+              <button onClick={() => removeQueryParam(index)} className="mt-2 border border-red-500 bg-white text-red-500 w-[5rem] h-[2.5rem] p-1 rounded-xl border-2 hover:text-white hover:bg-red-500">Remove</button>
 
-          </div>
-          <button className="mt-2 border border-green-500 bg-white text-green-500 w-[3rem] p-1 rounded-xl border-2 hover:text-white hover:bg-green-500">Add</button>
+            </div>
+          ))}
           
-        </div>}
-        {activeTab === "Headers" && <div className="header" id="request-headers">
-          <div  className="data"></div>
-          <button className="mt-2 border border-green-500 bg-white text-green-500 w-[3rem] p-1 rounded-xl border-2 hover:text-white hover:bg-green-500">Add</button>
+          <button onClick={addQueryParam} data-add-query-param-btn className="mt-2 border border-green-500 bg-white text-green-500 w-[3rem] p-1 rounded-xl border-2 hover:text-white hover:bg-green-500">Add</button>
           
-        </div>}
-        {activeTab === "JSON" && <div className="header" id="json">
-          <div  className="data overflow-auto max-h-[200px]"></div>
+        </div>)}
+        {activeTab === "Headers" && (
+        <div className="header" id="request-headers">
+          {headers.map((header, index) => (
+            <div key={index} className="flex space-x-2 ">
+              <input
+              className="border border-black m-2 p-2 w-[15rem]" 
+              type="text"
+              placeholder="Header key"
+              value={header.key}
+              onChange={(e) => {
+                const newHeaders = [...headers];
+                newHeaders[index].key = e.target.value;
+                setHeaders(newHeaders);
+              }} />
+              <input
+               className="border border-black m-2 p-2 w-[15rem]" 
+              type="text"
+              placeholder="Header value"
+              value={header.value}
+              onChange={(e) => {
+                const newHeaders = [...headers];
+                newHeaders[index].value = e.target.value;
+                setHeaders(newHeaders);
+              }} />
+              <button onClick={() => removeHeader(index)} className="mt-2 border border-red-500 bg-white text-red-500 w-[5rem] h-[2.5rem] p-1 rounded-xl border-2 hover:text-white hover:bg-red-500">Remove</button>
+            </div>
+          ))}
+          
+          <button onClick={addHeader} className="mt-2 border border-green-500 bg-white text-green-500 w-[3rem] p-1 rounded-xl border-2 hover:text-white hover:bg-green-500">Add</button>
+          
+        </div>)}
+        {activeTab === "JSON" && (
+          <textarea className="w-full h-40 p-2 border" value={jsonBody}
+          onChange={(e) => setJsonbody(e.target.value)}></textarea>
           
           
-        </div>}
+          
+        )}
       </div>
 
       {/* Results Box */}
       <div className="mt-4 p-4 bg-white border border-gray-300 rounded-lg shadow-lg h-96 overflow-y-auto">
+        <h3>Status: {status}</h3>
+        <h4>Response Headers:</h4>
+        <pre>{responseHeaders ? JSON. stringify(responseHeaders, null, 2) : "No headers"}</pre>
+        <h4>Response Body:</h4>
         <pre className="whitespace-pre-wrap text-sm text-gray-800">
           {result || "Results will be displayed here..."}
         </pre>
       </div>
-      <template data-key-value-template>
-        <form data-key-value-pair className="flex">
-          <input type="text" placeholder="key" />
-          <input type="text" placeholder="value" />
-          <button type="button" className="mt-2 border border-red-500 bg-white text-red-500 w-[3rem] p-1 rounded-xl border-2 hover:text-white hover:bg-red-500">Remove</button>
-        </form>
-
-      </template>
+      
     </div>
   );
 }
