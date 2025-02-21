@@ -11,7 +11,7 @@ function Home() {
             </div>
             <button className='p-2 text-white relative bg-amber-400 ml-5 mt-5 rounded-xl '>
                 <Link to="/signup"> 
-                Get Started
+                Get Started sid!!
                 </Link>
               </button>     
         </div>
