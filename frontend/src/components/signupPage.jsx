@@ -27,7 +27,7 @@ function Signup() {
     e.preventDefault();
     console.log("Submitting form data:", formData); // Debugging log
     try{
-      const response = await axios.post("http://localhost:5000/api/auth/Signup", formData);
+      const response = await axios.post("https://valid8-oypy.onrender.com/api/auth/Signup", formData);
       console.log("Response:", response.data); // Debugging log
       alert("Signup Succesfull");
       navigate("/Login");
