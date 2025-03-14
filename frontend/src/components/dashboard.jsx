@@ -67,7 +67,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="dashboardContainer p-6 bg-gray-100 min-h-screen">
+    <div className="dashboardContainer p-6 bg-gray-100 min-h-screen pt-[6.9rem]">
       
       <div className="flex gap-4 mb-4">
         {/* Dropdown Menu */}

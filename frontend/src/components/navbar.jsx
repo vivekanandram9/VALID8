@@ -2,10 +2,13 @@
 import { NavLink } from 'react-router-dom'
 
 function Navbar() {
+    const scrollTosection = (id) => {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth"});
+    };
   return (
     <>
         <main>
-            <div className="navContainer flex  justify-between bg-black p-4 text-xl text-white ">
+            <div className="navContainer flex  justify-between bg-black p-4 text-xl text-white fixed top-0 w-full z-50">
                 
                 <div className="logo flex  items-center space-x-4 ">
                     
@@ -28,16 +31,27 @@ function Navbar() {
                         </NavLink>
                     </li>*/}
                     <li>
+                        <NavLink to="/" onClick = {() => scrollTosection("hero") }>
+                            Home
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink >
+                            Features
+                        </NavLink>
+                    </li>
+                    <li>
                         <NavLink to="/Signup">
-                         Get Started
+                        <button className='p-1 w-[4rem]  border-[2px] rounded-3xl text-sm bg-black  hover:border-lred ' type='button'>Sign-up</button>
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/Login">
-                           <button className='p-1 w-[4rem]  border rounded-xl text-sm bg-white  text-lred hover:p-2' type='button'>Login</button>
+                           <button className='p-1 w-[4rem]  border-[2px] rounded-3xl text-sm bg-black  hover:border-lred ' type='button'>Login</button>
                         </NavLink>
                         
                     </li>
+                   
                 </ul>
             </div>
         </main>    

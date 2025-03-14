@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from  "jsonwebtoken";
 import passport from "passport";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser"
 
 import UserModel from "../model/user.js";
 
@@ -57,9 +58,27 @@ app.post("/login", (req, res, next) => {
         return res.json({ message: "login succesful", token });
     })(req, res, next);
 });
+
+//middleware for protected routes
+const authMiddleware = (req, res, next) => {
+    const token = req.cookies.authToken;
+    if(!token) return req.status(401).json({message: "Unauthorized"});
+
+    jsonwebtoken.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        if(err) return res.status(403).json({ message: "Forbidden"});
+        req.user = decoded;
+        next();
+    });
+};
 //protected route 
-app.get("/profile", passport.authenticate("jwt" , { session: false}), (req, res) => {
+app.get("/Dashboard", passport.authenticate("jwt" , { session: false}), (req, res) => {
     res.json({ message: "Profile accessed", user: req.user});
 })
+
+//Logout Route
+app.post("/logout", (req, res) => {
+    res.clearCookie("authToken");
+    res.json({message: "Logout Succesfull"});
+});
 
 export default app;

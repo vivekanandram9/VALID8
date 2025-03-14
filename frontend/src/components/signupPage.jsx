@@ -39,7 +39,7 @@ function Signup() {
   return (
     <>
     
-     <div  className="mainContainer w-screen h-screen bg-black flex  justify-center overflow-hidden">
+     <div  className="mainContainer w-screen h-screen bg-black flex  justify-center overflow-hidden pt-[6.9rem]">
         <div className="signup-container  bg-black w-[30rem] h-[33rem] border-solid border border-lred rounded-2xl border-[4px] relative mt-20">
           <div className="logo mb-4 w-24 h-24 flex justify-center items-center relative left-[11.5rem] top-[2rem]">
             <img className='w-full h-ful object-contain' src={logo01} alt="Logo" />

@@ -22,8 +22,8 @@ function Home() {
         
 
       </div>*/}
-    
-      <div className="heroSection w-full h-screen flex  relative bg-[#07080A]">
+     {/*#1A1A1A  #07080A*/}
+      <div className="heroSection w-full h-screen flex  relative bg-[#080808] pt-[6.9rem]" id="hero">
         <div className="grid-bg bg-[radial-gradient(circle,rgba(255,255,255,0.3)_1px,transparent_1px)] bg-[size:20px_20px] w-full h-screen flex">
           <div className="left w-1/2  justify-center ml-8">
             <motion.h1
@@ -35,7 +35,7 @@ function Home() {
               Valid<span className="text-lred">8</span> Smarter, Deploy Faster.
             </motion.h1>
             <motion.button
-              className="mt-6 px-6 py-3 bg-red-600 text-white text-lg rounded-lg hover:bg-red-700"
+              className="mt-6 px-6 py-3 bg-[#F91515] text-white text-lg rounded-3xl hover:bg-[#e8081a]"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
@@ -59,7 +59,7 @@ function Home() {
       </div>
 
       {/* Features Section */}
-      <section className="bg-black text-white py-20">
+      <section className="bg-black text-white py-20" id="features">
         <h2 className="text-4xl font-bold text-center mb-12">Features</h2>
         <div className="grid grid-cols-3 gap-8 max-w-6xl mx-auto">
           <div className="p-6 bg-gray-900 rounded-lg text-center">
