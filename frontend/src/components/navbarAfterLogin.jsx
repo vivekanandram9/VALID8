@@ -1,7 +1,9 @@
 
 import { useNavigate, NavLink } from 'react-router-dom'
+import { useState, useEffect } from 'react';
 
-const NavbarUser = ({ setIsAuthenticated}) => {
+const NavbarUser = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -50,11 +52,40 @@ const NavbarUser = ({ setIsAuthenticated}) => {
                     <li>
                         <NavLink to="/dashboard">Dashboard</NavLink>
                     </li>
-                    <li>
-                        <NavLink>
-                            <button onClick={handleLogout}>Logout</button>
-                        </NavLink>
+                    <li>   
+                        <div className="userSection ">
+                            <div className="userDP w-[4rem] h-[4rem]  relative">
+                                <button onClick={() => setIsOpen(!isOpen)}>
+                                <img src="./src/assets/userlogo.png" alt="" />
+                                </button>
+
+                                {isOpen && (
+                                    <div className="absolute right-0 mt-2 w-40 bg-white border rounded-lg shadow-lg text-black px-4">
+                                        <div className="userimg">
+                                        <img src="./src/assets/userlogo.png" alt="" />
+                                        </div>
+                                        <div className="greetUser"><h2>Hi, user</h2></div>
+                                        <div className='flex w-[2rem] p-1'>
+                                            <img src="./src/assets/resume.png" alt="" />
+                                        <button className='block  px-4'
+                                         onClick={() => navigate("#")}
+                                        >Profile</button>
+                                        </div>
+                                        <div className='flex w-[2rem] p-1'>
+                                            <img src="./src/assets/logout.png" alt="" />
+                                        <button onClick={handleLogout} className='block w-full text-left px-4  text-red-600 '>Logout</button>
+                                        </div>
+                                        
+                                        
+
+                                    </div>
+                                )}
+                                    
+
+                            </div>
+                        </div>
                     </li>
+                  
                    
                 </ul>
             </div>
