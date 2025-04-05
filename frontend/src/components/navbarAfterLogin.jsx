@@ -1,6 +1,7 @@
 
 import { useNavigate, NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react';
+import logout from '../assets/logout.png';
 
 const NavbarUser = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,7 +73,7 @@ const NavbarUser = () => {
                                         >Profile</button>
                                         </div>
                                         <div className='flex w-[2rem] p-1'>
-                                            <img src="./src/assets/logout.png" alt="" />
+                                            <img src={logout} alt="" />
                                         <button onClick={handleLogout} className='block w-full text-left px-4  text-red-600 '>Logout</button>
                                         </div>
                                         
