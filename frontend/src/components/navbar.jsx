@@ -1,5 +1,8 @@
 
 import { NavLink } from 'react-router-dom'
+import logo01 from '../assets/logo01.png';
+
+
 
 function Navbar() {
     const scrollTosection = (id) => {
@@ -13,7 +16,7 @@ function Navbar() {
                 <div className="logo flex  items-center space-x-4 ">
                     
                     <div className="logoImg">
-                        <a href="/"><img className='h-20 w-16' src="./src/assets/logo01.png" alt="" /></a>
+                        <a href="/"><img className='h-20 w-16' src={logo01} alt="" /></a>
                     </div>
                     <div className="logoText">
                         <a href="/"><h1>VALID<span className="text-lred">8</span></h1></a>

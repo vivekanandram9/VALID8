@@ -2,6 +2,10 @@
 import { useNavigate, NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import logout from '../assets/logout.png';
+import logo01 from '../assets/logo01.png';
+import userlogo from '../assets/userlogo.png';
+import resume from '../assets/resume.png';
+
 
 const NavbarUser = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +27,7 @@ const NavbarUser = () => {
                 <div className="logo flex  items-center space-x-4 ">
                     
                     <div className="logoImg">
-                        <a href="/"><img className='h-20 w-16' src="./src/assets/logo01.png" alt="" /></a>
+                        <a href="/"><img className='h-20 w-16' src={logo01} alt="" /></a>
                     </div>
                     <div className="logoText">
                         <a href="/"><h1>VALID<span className="text-lred">8</span></h1></a>
@@ -57,17 +61,17 @@ const NavbarUser = () => {
                         <div className="userSection ">
                             <div className="userDP w-[4rem] h-[4rem]  relative">
                                 <button onClick={() => setIsOpen(!isOpen)}>
-                                <img src="./src/assets/userlogo.png" alt="" />
+                                <img src={userlogo} alt="" />
                                 </button>
 
                                 {isOpen && (
                                     <div className="absolute right-0 mt-2 w-40 bg-white border rounded-lg shadow-lg text-black px-4">
                                         <div className="userimg">
-                                        <img src="./src/assets/userlogo.png" alt="" />
+                                        <img src={userlogo} alt="" />
                                         </div>
                                         <div className="greetUser"><h2>Hi, user</h2></div>
                                         <div className='flex w-[2rem] p-1'>
-                                            <img src="./src/assets/resume.png" alt="" />
+                                            <img src={resume} alt="" />
                                         <button className='block  px-4'
                                          onClick={() => navigate("#")}
                                         >Profile</button>
