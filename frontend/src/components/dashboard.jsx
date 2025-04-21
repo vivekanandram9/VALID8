@@ -14,6 +14,8 @@ function Dashboard() {
   const [jsonBody, setJsonbody] = useState("{}");
   const [status, setStatus] = useState(null);
   const [responseHeaders, setResponseHeaders] = useState(null);
+  const [monitor, setMonitor] = useState(false);
+  const [saveResult, setSaveResult] = useState(false);
 
   
 
@@ -43,7 +45,7 @@ function Dashboard() {
 
   
 
-  const handleSendRequest = async () => {
+  /*const handleSendRequest = async () => {
     try {
       const options = {
         url: inputValue,
@@ -61,8 +63,48 @@ function Dashboard() {
       setStatus(response.status);
       setResponseHeaders(response.headers);
       setResult(JSON.stringify(response.data, null, 2));
+
+      //save monitoring preference 
+      await axios.post("http://localhost:5000/api/monitor",{
+        url: inputValue,
+        name: "User API",
+        monitor
+      });
     } catch (error) {
       setResult(`Error: ${error.message}`);
+    }
+  };*/
+  const handleSendRequest = async () => {
+    try {
+      const payload = {
+        url: inputValue,
+        method: dropdownValue,
+        headers: Object.fromEntries(headers.map(h => [h.key, h.value])),
+        params: Object.fromEntries(queryParams.map(q => [q.key, q.value])),
+        
+        monitor,
+        saveResult,
+      };
+
+      if(["POST" ,"PUT"].includes(dropdownValue)){
+        payload.data = JSON.parse(jsonBody);
+      }
+
+      const response = await axios.post("http://localhost:5000/api/test", payload);
+
+      setStatus(response.data.status);
+      setResponseHeaders(response.headers);
+      setResult(JSON.stringify(response.data.data, null, 2));
+
+      //save monitoring preference
+      await axios.post("http://localhost:5000/api/monitor", {
+        url: inputValue,
+        name: "User API",
+        monitor
+      });
+    } catch(error){
+      setResult(`Error: ${error.message}`);
+      setStatus(error.response?.status || "Request Failed");
     }
   };
 
@@ -98,6 +140,22 @@ function Dashboard() {
         >
           Send
         </button>
+        <div className="flex items-center gap-2">
+            <input type="checkbox"
+            id="monitor"
+            checked={monitor}
+            onChange={(e) => setMonitor(e.target.checked)}
+            className="w-4 h-4" />
+            <label htmlFor="monitor" className="text-sm">Monitor this API reglarly</label>
+        </div>
+        <div className="flex items-center gap-2">
+            <input type="checkbox"
+            id="saveResult"
+            checked={saveResult}
+            onChange={(e) => setSaveResult(e.target.checked)}
+            className="w-4 h-4" />
+            <label htmlFor="saveResult" className="text-sm">Save</label>
+        </div>
       </div>
 
       {/* Tabs */}

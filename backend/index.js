@@ -9,6 +9,9 @@ import cors from "cors";
 
 import authRoutes from "../backend/routes/auth.js";
 
+import monitorRoutes from "../backend/routes/monitor.js";
+import testRoutes from "./routes/test.js";
+
 
 
 
@@ -25,11 +28,13 @@ app.use(passport.initialize());
 
 //routes
 app.use("/api/auth", authRoutes);
+app.use("/api/monitor", monitorRoutes);
+app.use("/api/test" , testRoutes);
 
 
-app.get("/", (req,res) => {
+/*app.get("/", (req,res) => {
     res.send("Hello world!");
-});
+});*/
 
 // function to  to connect MongoDb
 
@@ -50,3 +55,5 @@ const startServer = async () => {
 };
 
 startServer();
+
+import "../backend/cron/monitorScheduler.js";
