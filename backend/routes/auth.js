@@ -9,11 +9,13 @@ import UserModel from "../model/user.js";
 
 dotenv.config();
 
-const app = express();
+const router = express.Router();
+console.log("✅ Auth router loaded");
+
 
 //signup route
 
-app.post("/signup", async(req, res) => {
+router.post("/signup", async(req, res) => {
     try {
         console.log("Signup request received:", req.body);
         const {name, email, password} =  req.body;
@@ -47,7 +49,7 @@ app.post("/signup", async(req, res) => {
     }
 });
 
-app.post("/login", (req, res, next) => {
+router.post("/login", (req, res, next) => {
     passport.authenticate("local", {session: false}, (err, user, info) =>{
         if (err || !user){
             return res.status(400).json({ message: info ? info.message: "Login failed"});
@@ -70,15 +72,36 @@ const authMiddleware = (req, res, next) => {
         next();
     });
 };
+router.get("/test", (req, res) => {
+  res.send("✅ Simple route is working");
+});
+
 //protected route 
-app.get("/Dashboard", passport.authenticate("jwt" , { session: false}), (req, res) => {
+router.get("/Dashboard", passport.authenticate("jwt" , { session: false}), (req, res) => {
     res.json({ message: "Profile accessed", user: req.user});
 })
 
 //Logout Route
-app.post("/logout", (req, res) => {
+router.post("/logout", (req, res) => {
     res.clearCookie("authToken");
     res.json({message: "Logout Succesfull"});
 });
 
-export default app;
+router.get("/user", passport.authenticate("jwt", { session: false}), async (req, res) => {
+    try {
+        console.log("Decoded user from JWT:", req.user);
+        const user = await UserModel.findById(req.user.id).select("name");
+        console.log("Found user in DB:", user);
+        res.json({name: user.name});
+    } catch (error) {
+        console.error("Error fetching user:", error);
+        res.status(500).json({error: "failed to fetch user info"});
+        
+    }
+});
+router.get("/debug-token", passport.authenticate("jwt", { session: false }), (req, res) => {
+  res.json({ message: "Token is valid", user: req.user });
+});
+
+
+export default router;

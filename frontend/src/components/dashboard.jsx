@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import axios from "axios"
+import DashboardHeader from "./dashboardHeader.jsx";
 
 
 
@@ -109,14 +110,17 @@ function Dashboard() {
   };
 
   return (
-    <div className="dashboardContainer p-6 bg-gray-100 min-h-screen pt-[9.9rem]">
+
+    <div className="dashboardContainer p-6 bg-black min-h-screen pl-[11rem] text-white ">
+      <hr className="border-t  border-gray-300  left-0 top-[6rem] w-full fixed" />
+      <DashboardHeader/>
       
       <div className="flex gap-4 mb-4">
         {/* Dropdown Menu */}
         <select
           value={dropdownValue}
           onChange={(e) => setDropdownValue(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
         >
           <option value="GET">GET</option>
           <option value="POST">POST</option>
@@ -241,7 +245,7 @@ function Dashboard() {
           
         </div>)}
         {activeTab === "JSON" && (
-          <textarea className="w-full h-40 p-2 border" value={jsonBody}
+          <textarea className="w-full h-40 p-2 border text-black" value={jsonBody}
           onChange={(e) => setJsonbody(e.target.value)}></textarea>
           
           

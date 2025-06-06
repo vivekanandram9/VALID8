@@ -14,13 +14,13 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+      {/*<BrowserRouter>
       <Navbar></Navbar>
       <Home></Home>
       <Signup></Signup>
       <Login></Login>
       
-      </BrowserRouter>
+      </BrowserRouter>*/}
       
     </>
   )

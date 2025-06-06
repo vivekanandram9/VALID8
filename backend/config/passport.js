@@ -5,8 +5,7 @@ import bcrypt from "bcryptjs";
 import UserModel from "../model/user.js";
 
 import dotenv from "dotenv";
-
-//dotenv.config();
+dotenv.config();
 
 
 const configurePassport = (passport) => {

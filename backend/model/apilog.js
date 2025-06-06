@@ -6,8 +6,8 @@ const apiLogSchema = new mongoose.Schema({
     statusCode: Number,
     responseTime: Number,
     error: String,
-    checkedAt: {type: Date, default: Date.now}
-});
+   //checkedAt: {type: Date, default: Date.now}
+}, { timestamps: true});
 
 const ApiLog = mongoose.model("ApiLog", apiLogSchema);
 

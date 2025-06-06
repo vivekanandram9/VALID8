@@ -7,10 +7,14 @@ dotenv.config();
 import configurePassport from "./config/passport.js";
 import cors from "cors";
 
-import authRoutes from "../backend/routes/auth.js";
+import authRoutes from "./routes/auth.js";
 
-import monitorRoutes from "../backend/routes/monitor.js";
+import monitorRoutes from "./routes/monitor.js";
 import testRoutes from "./routes/test.js";
+
+import logRoutes from "./routes/logs.js";
+
+import statRoute from "./routes/stats.js";
 
 
 
@@ -30,6 +34,8 @@ app.use(passport.initialize());
 app.use("/api/auth", authRoutes);
 app.use("/api/monitor", monitorRoutes);
 app.use("/api/test" , testRoutes);
+app.use("/api/logs", logRoutes);
+app.use("/api/stats", statRoute);
 
 
 /*app.get("/", (req,res) => {
