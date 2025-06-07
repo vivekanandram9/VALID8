@@ -22,7 +22,7 @@ const DashboardHeader = () => {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const statsRes = await axios.get("http://localhost:5000/api/stats");
+                const statsRes = await axios.get("https://valid8-oypy.onrender.com/api/stats");
                 setStats(statsRes.data);
             } catch (error) {
                 console.error("failed to fetch dashboard stats:", error);
@@ -32,7 +32,7 @@ const DashboardHeader = () => {
 
         const fetchUser = async () => {
             try {
-                const userRes = await axios.get("http://localhost:5000/api/auth/user", {
+                const userRes = await axios.get("https://valid8-oypy.onrender.com/api/auth/user", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },

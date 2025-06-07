@@ -8,11 +8,11 @@ function Home() {
     <>
       {/* Hero Section */}
       <div
-        className="heroSection w-full min-h-screen flex flex-col md:flex-row relative overflow-hidden  pt-[5.5rem]   md:pt-0 text-text-main -mb-[3.6rem] sm:-mb-0"
+        className="heroSection w-full min-h-[100svh] flex flex-col md:flex-row relative overflow-hidden pt-[5.5rem] md:pt-0    text-text-main "
         id="hero"
       >
         {/* Left Side: Silk Background + Text Content */}
-        <div className="relative w-full md:w-1/2 flex items-center justify-center px-6 py-8 ">
+        <div className="relative w-full md:w-1/2 flex items-center justify-center px-6 py-8 md:py-16 ">
           <div className="absolute inset-0 -z-10">
             <Silk
               speed={5}
@@ -59,11 +59,11 @@ function Home() {
         </div>
 
         {/* Right Side: Dashboard Screenshot */}
-        <div className="w-full md:w-1/2 flex items-center justify-center bg-black px-6 py-8 ">
+        <div className="w-full md:w-1/2 flex items-center justify-center bg-black px-6 py-8 md:py-16   h-[61vh] sm:h-[25rem] md:h-auto">
           <img
             src={dashboardIMG}
             alt="Dashboard Screenshot"
-            className="w-full max-w-[85%] rounded-xl shadow-lg"
+            className="w-full max-w-[85%]  shadow-lg"
           />
         </div>
       </div>

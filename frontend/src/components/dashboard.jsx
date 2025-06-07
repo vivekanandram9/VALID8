@@ -91,14 +91,14 @@ function Dashboard() {
         payload.data = JSON.parse(jsonBody);
       }
 
-      const response = await axios.post("http://localhost:5000/api/test", payload);
+      const response = await axios.post("https://valid8-oypy.onrender.com/api/test", payload);
 
       setStatus(response.data.status);
       setResponseHeaders(response.headers);
       setResult(JSON.stringify(response.data.data, null, 2));
 
       //save monitoring preference
-      await axios.post("http://localhost:5000/api/monitor", {
+      await axios.post("hhttps://valid8-oypy.onrender.com/api/monitor", {
         url: inputValue,
         name: "User API",
         monitor
