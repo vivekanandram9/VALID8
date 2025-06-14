@@ -1,9 +1,9 @@
 
-import Navbar from './components/navbar'
-import Home from './components/home'
-import Signup from './components/signupPage';
-import Login from './components/login';
-import Dashboard from './components/dashboard';
+import Navbar from './components/navbar.jsx'
+import Home from './pages/home.jsx'
+import Signup from './pages/signupPage.jsx';
+import Login from './pages/login.jsx';
+import Dashboard from './pages/dashboard.jsx';
 import Protectedroute from './components/Protectedroute';
 import {BrowserRouter} from 'react-router-dom';
 

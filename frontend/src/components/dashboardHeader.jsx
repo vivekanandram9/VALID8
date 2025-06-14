@@ -56,7 +56,7 @@ const DashboardHeader = () => {
 
     return (
         <>
-        <div className="mb-8 space-y-6">
+        <div className="mb-8 space-y-6 fixed">
             <div className="sticky">
                 <h1 className="text-3xl font-bold text-white">
                     {greeting}, {username}👋

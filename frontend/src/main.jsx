@@ -3,15 +3,18 @@ import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import Home from './components/home.jsx'
+import Home from './pages/home.jsx'
 import Navbar from './components/navbar.jsx'
-import Signup from './components/signupPage.jsx'
-import Login from './components/login.jsx'
+import Signup from './pages/signupPage.jsx'
+import Login from './pages/login.jsx'
 import Protectedroute from './components/Protectedroute.jsx'
 import { RouterProvider, createBrowserRouter, Route, createRoutesFromElements } from 'react-router-dom'
 import Layout from './layout.jsx'
 import DashboardLayout from './dashboardLayout.jsx'
-import Dashboard from './components/dashboard.jsx'
+import Dashboard from './pages/dashboard.jsx'
+import SavedApis from './pages/savedApis.jsx'
+import MonitorApis from './pages/monitoredAPI.jsx'
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +30,9 @@ const router = createBrowserRouter(
       <Route element={<Protectedroute/>}>
         <Route element={<DashboardLayout/>}> 
               <Route path="/Dashboard" element={<Dashboard/>} />
+              <Route path="/SavedApis" element={<SavedApis/>}/>
+              <Route path="/MonitorApis" element={<MonitorApis/>}/>
+
 
         </Route>
       </Route>

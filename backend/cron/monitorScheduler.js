@@ -26,7 +26,7 @@ cron.schedule("*/5 * * * *", async() => {
                     {url: api.url},
                     { $set: { lastTestedAt: new DataView()}}
                 );
-                console.log(`${api.name} responded with status ${response.status}`);
+                console.log(`API responded with status ${response.status}`);
             }catch (err) {
                 const responseTime = Date.now() - start;
 
@@ -37,7 +37,7 @@ cron.schedule("*/5 * * * *", async() => {
                     responseTime,
                     error: err.message
                 });
-                console.error(`Error calling ${api.name}: ${err.message}`);
+                console.error(`Error : ${err.message}`);
             }
         }
     } catch (err){

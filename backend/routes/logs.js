@@ -3,15 +3,27 @@ import Apilog from "../model/apilog.js";
 
 const router = express.Router();
 
-router.get("/", async(req, res) =>{
+router.get("/", async (req, res) => {
     try {
-        const logs = await Apilog.find().sort({ createdAt: -1}).limit(100);
-        res.status(200).json(logs);
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+
+        const skip = (page -1 ) * limit;
+
+        const logs = await Apilog.find()
+           .sort({ createdAt: -1})
+           .skip(skip)
+           .limit(limit);
+        const total = await Apilog.countDocuments();
+        res.status(200).json({
+            data : logs,
+            total,
+        });
     } catch (error) {
-        console.error("Failed to fetch logs:", error);
+
+        console.error("Error fetching logs:", error);
         res.status(500).json({ error: "Internal server error"});
         
     }
 });
-
 export default router;
