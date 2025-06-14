@@ -15,8 +15,8 @@ const MonitoredApiTable = () => {
         try {
             const res = await axios.get(`https://valid8-oypy.onrender.com/api/monitor?page=${pageNum}&limit=${limit}`);
             console.log("Logs API response:", res.data);
-            setApis(res.data);
-            setTotal(res.data.length);
+            setApis(res.data.data);
+            setTotal(res.data.data.length);
         } catch (error) {
             console.error("Failed to fetch  APIs:", error);
             setApis([]);

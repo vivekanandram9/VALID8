@@ -15,8 +15,9 @@ const SavedApiTable = () => {
         try {
             const res = await axios.get(`https://valid8-oypy.onrender.com/api/logs?page=${pageNum}&limit=${limit}`);
             console.log("Logs API response:", res.data);
-            setApis(res.data);
-            setTotal(res.data.length);
+           
+            setApis(res.data.data);
+            setTotal(res.data.data.length);
         } catch (error) {
             console.error("Failed to fetch saved APIs:", error);
             setApis([]);
