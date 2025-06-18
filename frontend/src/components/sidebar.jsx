@@ -25,7 +25,8 @@ function Sidebar() {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
-        setUsername(userRes.data.name);
+        const username = userRes.data.name;
+        setUsername(username.split(" ")[0]);
       } catch (error) {
         console.error("failed to fetch user info:", error);
       }

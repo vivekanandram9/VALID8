@@ -37,7 +37,9 @@ const DashboardHeader = () => {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
                 });
-                setusername(userRes.data.name);
+                const username = userRes.data.name;
+                
+                setusername(username.split(" ")[0]);
             } catch (error) {
                 console.error("failed to fetch user info:", error);
             }
@@ -56,7 +58,7 @@ const DashboardHeader = () => {
 
     return (
         <>
-        <div className="mb-8 space-y-6 fixed">
+        <div className="mb-8 space-y-6 ">
             <div className="sticky">
                 <h1 className="text-3xl font-bold text-white">
                     {greeting}, {username}👋

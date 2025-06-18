@@ -62,4 +62,4 @@ const startServer = async () => {
 
 startServer();
 
-import "../backend/cron/monitorScheduler.js";
+import "./cron/monitorScheduler.js";

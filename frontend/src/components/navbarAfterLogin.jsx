@@ -32,7 +32,8 @@ const NavbarUser = () => {
                   Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
               });
-              setUsername(userRes.data.name);
+              const username = userRes.data.name;
+              setUsername(username.split(" ")[0]);
             } catch (error) {
               console.error("failed to fetch user info:", error);
             }
@@ -48,7 +49,7 @@ const NavbarUser = () => {
     const navClasses = `fixed top-0 w-full z-50 flex items-center justify-between px-4 py-3 text-white transition-colors duration-500 h-[5.5rem] ${
         isScrolled
             ? 'bg-[rgba(18,18,18,0.6)] backdrop-blur-xl border-b border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.3)]'
-            : 'bg-black'
+            : 'bg-transparent'
     }`;
 
     return (
