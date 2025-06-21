@@ -3,7 +3,7 @@ import { useNavigate, NavLink } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import axios from "axios";
 import logout from '../assets/logout.png';
-import logo01 from '../assets/logo01.png';
+import logo01 from '../assets/VALID8LOGO.png';
 import userlogo from '../assets/userlogo.png';
 import resume from '../assets/resume.png';
 
@@ -43,7 +43,7 @@ function Sidebar() {
           <div className="logo  items-center  flex flex-row w-full">
 
             <div className="logoImg mr-2 ">
-              <a href="/"><img className='h-[4rem] w-[3rem]  ' src={logo01} alt="" /></a>
+              <a href="/"><img className='h-[6rem] w-[6rem] absolute top-[0rem] left-[2rem]' src={logo01} alt="" /></a>
             </div>
             { /*<div className="logoText  ">
               <a href="/"><h1>VALID<span className="text-lred">8</span></h1></a>
@@ -59,12 +59,12 @@ function Sidebar() {
 
           <ul className="flex flex-col space-y-4 mt-12">
             <li>
-              <NavLink to="/" onClick={() => scrollTosection("hero")} className="block px-4 py-2 hover:bg-gray-800 rounded">
+              <NavLink to="/" onClick={() => scrollTosection("hero")} className="block px-4 py-2 hover:bg-gray-800 rounded ">
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard" className="block px-4 py-2 hover:bg-gray-800 rounded">
+              <NavLink to="/dashboard" className="block px-4 py-2 hover:bg-gray-800 rounded active:bg-gray-800 active:border-x-2">
                 Dashboard
               </NavLink>
             </li>
@@ -79,7 +79,7 @@ function Sidebar() {
               </NavLink>
             </li>
             <li>
-              <NavLink className="block px-4 py-2 hover:bg-gray-800 rounded">
+              <NavLink to="/Analytics" className="block px-4 py-2 hover:bg-gray-800 rounded">
                 Analytics
               </NavLink>
             </li>
@@ -87,10 +87,10 @@ function Sidebar() {
 
 
           {<div className="userSection  ">
-            <div className="userDP w-[4rem] h-[4rem]  relative">
+            <div className="userDP w-[4rem] h-[4rem]  ">
               <button onClick={() => setIsOpen(!isOpen)}>
                 {/*<img src={userlogo} alt="" />*/}
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-7">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-9 relative left-[2rem]">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                 </svg>
               </button>

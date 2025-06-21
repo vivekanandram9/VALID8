@@ -16,6 +16,8 @@ import logRoutes from "./routes/logs.js";
 
 import statRoute from "./routes/stats.js";
 
+import analyticsRoute from "./routes/data.js"
+
 
 
 
@@ -36,6 +38,7 @@ app.use("/api/monitor", monitorRoutes);
 app.use("/api/test" , testRoutes);
 app.use("/api/logs", logRoutes);
 app.use("/api/stats", statRoute);
+app.use("/api/data",analyticsRoute);
 
 
 /*app.get("/", (req,res) => {

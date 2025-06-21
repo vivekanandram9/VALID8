@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import axios from "axios";
-import logo01 from "../assets/logo01.png"
+import logo01 from "../assets/VALID8LOGO.png"
 import { Link } from 'react-router-dom';
 
 import { useNavigate } from 'react-router-dom';

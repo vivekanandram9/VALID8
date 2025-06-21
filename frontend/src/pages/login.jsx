@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import axios from "axios";
-import logo01 from "../assets/logo01.png"
+import logo01 from "../assets/VALID8LOGO.png"
 
 import { useNavigate } from 'react-router-dom';
 //import logo from './src/assets/logo01.png';
@@ -47,18 +47,18 @@ function Login() {
     <>
 
       <div className="mainContainer w-screen h-screen bg-black flex  justify-center overflow-visible pt-[6.9rem]">
-        <div className="fixed inset-0 -z-10 bg-black overflow-hidden">
-          {/* Top-left red glow */}
+       {/* <div className="fixed inset-0 -z-10 bg-black overflow-hidden">
+          
           <div className="absolute w-[600px] h-[600px] bg-[#f91515]/20 rounded-full blur-[200px] top-[-150px] left-[-150px]"></div>
 
-          {/* Bottom-right soft white glow */}
+          
           <div className="absolute w-[400px] h-[400px] bg-white/5 rounded-full blur-[150px] bottom-[-100px] right-[-100px]"></div>
-        </div>
+        </div>*/}
 
 
         <div className="signup-container  bg-[rgba(255,255,255,0.05)] w-[25rem] h-[30rem] border-solid   rounded-2xl border-[4px] border-white/10 relative mt-20 backdrop-blur-md text-white">
           <div className="logo mb-4 w-24 h-24 flex justify-center items-center relative left-[9.5rem] top-[2rem]">
-            <img className='w-full h-ful object-contain' src={logo01} alt="Logo" />
+            <img className='w-full h-full object-contain' src={logo01} alt="Logo" />
           </div>
           <form className=' relative top-[5rem]' onSubmit={handleSubmit}>
             <div className="inputContainer flex flex-col">

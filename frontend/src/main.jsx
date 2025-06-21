@@ -14,6 +14,7 @@ import DashboardLayout from './dashboardLayout.jsx'
 import Dashboard from './pages/dashboard.jsx'
 import SavedApis from './pages/savedApis.jsx'
 import MonitorApis from './pages/monitoredAPI.jsx'
+import Analytics from './pages/analytics.jsx'
 
 
 const router = createBrowserRouter(
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
               <Route path="/Dashboard" element={<Dashboard/>} />
               <Route path="/SavedApis" element={<SavedApis/>}/>
               <Route path="/MonitorApis" element={<MonitorApis/>}/>
+              <Route path="/Analytics" element={<Analytics/>}/>
 
 
         </Route>

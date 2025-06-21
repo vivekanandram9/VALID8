@@ -2,6 +2,7 @@ import React, {useState, useEffect } from "react";
 import Home from "./pages/home";
 import Navbar from "./components/navbar";
 import NavbarUser from "./components/navbarAfterLogin"
+import Footer from "./components/footer";
 
 
 import {Outlet} from 'react-router-dom'
@@ -27,10 +28,14 @@ function Layout(){
     }, []);
     return (
         <>
-        {isAuthenticated ? <NavbarUser setIsAuthenticated={setIsAuthenticated}/> : <Navbar/>}
-        <main>
+        <div className="flex flex-col min-h-screen">
+            {isAuthenticated ? <NavbarUser setIsAuthenticated={setIsAuthenticated}/> : <Navbar/>}
+        <main className="flex-grow">
             <Outlet></Outlet>
         </main>
+        <Footer/>
+        </div>
+        
         
         </>
     )
