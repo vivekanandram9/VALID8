@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from "../assets/VALID8LOGO.png"
 import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
-import { TextHoverEffect } from "../components/textHover.JSX";
+import { TextHoverEffect } from "../components/textHover.jsx";
 
 function Footer() {
     return (
