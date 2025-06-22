@@ -46,10 +46,10 @@ const NavbarUser = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const navClasses = `fixed top-0 w-full z-50 flex items-center justify-between px-4 py-3 text-white transition-colors duration-500 h-[5.5rem] ${
+    const navClasses = `fixed top-0  z-50 flex items-center justify-between px-4 py-3 text-white transition-colors duration-500 h-[5.5rem] ${
         isScrolled
-            ? 'bg-[rgba(18,18,18,0.6)] backdrop-blur-xl border-b border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.3)] mt-5 border rounded-3xl w-[89.5%] left-[1rem] sm:w-[90%] sm:left-[2rem] lg:w-[80%] lg:left-[10rem]'
-            : 'bg-transparent'
+            ? 'bg-[rgba(18,18,18,0.6)] backdrop-blur-xl border-b border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.3)] mt-5 border rounded-3xl w-[91%] left-[1rem] sm:w-[90%] sm:left-[2rem] lg:w-[80%] lg:left-[10rem]'
+            : 'bg-transparent w-[100%]'
     }`;
 
     return (
