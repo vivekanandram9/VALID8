@@ -27,7 +27,7 @@ function SuccessPieChart({ apiUrl = ""}){
         const fetchData = async () => {
             try {
                 const url = apiUrl 
-                ? `http://localhost:5000/api/data/success-ratio?url=${encodeURIComponent(apiUrl)}`: "http://localhost:5000/api/data/success-ratio";
+                ? `https://valid8-oypy.onrender.com/api/data/success-ratio?url=${encodeURIComponent(apiUrl)}`: "https://valid8-oypy.onrender.com/api/data/success-ratio";
 
                 const res = await axios.get(url);
                 setChartData({

@@ -26,4 +26,34 @@ router.get("/", async (req, res) => {
         
     }
 });
+router.get("/unique-urls", async (req, res) => {
+    try {
+        const uniqueUrls = await Apilog.distinct("url");
+        res.json(uniqueUrls);
+    } catch (error) {
+        console.error("Error fetching unique URLs:", error.message);
+        res.status(5000).json({error: "Failed to fetch unique API URLs"});
+    }
+});
+router.get("/count", async (req, res) => {
+    try{
+        const totalLogs = await Apilog.countDocuments();
+        res.status(200).json({ total: totalLogs});
+    }catch(error){
+        console.error("Error counting logs:", error.message);
+        res.status(500).json({error: "Failed to count logs"});
+    }
+});
+router.get("/failing-urls", async(req, res) => {
+    try{
+        const urls = await Apilog.aggregate([
+            {$match: { statusCode: { $gte: 400}}},
+            {$group: {_id: "$url"}}, //$gte= >=
+        ]);
+        res.json({ total: urls.length});
+    }catch(error){
+        console.error("Error fetching falling APIs:", error.message);
+        res.status(500).json({error: "Failed to fetch failing API URLs"});
+    }
+});
 export default router;
