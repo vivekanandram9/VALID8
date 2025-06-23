@@ -3,9 +3,9 @@ import MonitoredApiTable from "../components/monitoredApiTable.jsx";
 
 const MonitorApis = () => {
     return (
-         <div className="p-5 absolute ml-[10rem] lg:w-[70%] xl:w-[89%]">
-            <MonitoredApiTable/>
-        </div>
+         <div className="ml-[10rem] px-4 py-6 w-[calc(100%-10rem)] max-w-full overflow-x-hidden">
+      <MonitoredApiTable />
+    </div>
     );
 };
 

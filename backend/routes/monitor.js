@@ -90,4 +90,24 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.patch("/:id", async (req,res) => {
+    const { id } = req.params;
+    const { monitor } = req.body;
+
+    try{
+        const updated = await MonitoredAPI.findByIdAndUpdate(
+            id,
+            { monitor },
+            {new : true}
+        );
+        if(!updated){
+            return res.status(404).json({ message: "API not found"});
+        }
+        res.status(200).json({ messgae: "Monitor status updated", data: updated});
+    }catch(error){
+        console.error("Monitor toggle error:", error);
+        res.status(500).json({message: "failed to update monitor status"});
+    }
+});
+
 export default router;

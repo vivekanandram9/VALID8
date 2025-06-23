@@ -2,10 +2,12 @@ import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import logo01 from '../assets/VALID8LOGO.png';
+import Login from '../pages/login';
 
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [loginPageOpen, setLoginPageOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
@@ -19,10 +21,10 @@ function Navbar() {
         setIsOpen(false); // close menu on mobile
     };
 
-    const navClasses = `fixed top-0 w-full z-50 flex items-center justify-between px-4 py-3 text-white transition-colors transition-opacity transition-shadow ease-in-out duration-500 h-[5.5rem]  ${
+    const navClasses = `fixed top-0  z-50 flex items-center justify-between px-4 py-3 text-white transition-colors transition-opacity transition-shadow ease-in-out duration-500 h-[5.5rem]  ${
         isScrolled
-            ? 'bg-[rgba(18,18,18,0.6)] backdrop-blur-xl border-b border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.3)] mt-5 border rounded-3xl w-[89.5%] left-[1rem] sm:w-[90%] sm:left-[2rem] lg:w-[80%] lg:left-[10rem]'
-            : 'bg-transparent'
+            ? 'bg-[rgba(18,18,18,0.6)] backdrop-blur-xl border-b border-white/10 shadow-[0_2px_8px_rgba(0,0,0,0.3)] mt-5 border rounded-3xl w-[89.5%] left-[1.2rem] sm:w-[90%] sm:left-[2rem] lg:w-[80%] lg:left-[10rem]'
+            : 'bg-transparent w-full'
     }`;
 
     return (
@@ -47,10 +49,11 @@ function Navbar() {
                 <li><NavLink to="/Signup">
                     <button className="p-1 w-20 border-2 rounded-3xl text-sm bg-black hover:border-lred">Sign-up</button>
                 </NavLink></li>
-                <li><NavLink to="/Login">
+                <li><NavLink to="/Login" >
                     <button className="p-1 w-20 border-2 rounded-3xl text-sm bg-black hover:border-lred">Login</button>
                 </NavLink></li>
             </ul>
+           
 
             {/* Mobile menu */}
             {isOpen && (
