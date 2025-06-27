@@ -42,7 +42,7 @@ const MonitoredApiTable = () => {
     const totalPages = Math.ceil(total / limit);
 
     return (
-        <div className="w-full max-w-screen-xl bg-background text-foreground rounded-xl shadow-glow p-6 overflow-x-auto min-h-screen">
+        <div className="w-full max-w-screen-xl bg-background text-foreground rounded-xl  p-6 overflow-x-auto min-h-screen ml-7">
             <h2 className="text-2xl font-bold mb-6 text-foreground">Monitored APIs</h2>
 
             <table className="w-full table-auto border border-glow text-sm md:text-base">
@@ -78,22 +78,22 @@ const MonitoredApiTable = () => {
                                 </td>
                                 <td className="px-4 py-2 border border-[#2a2a2a]">{new Date(api.lastTestedAt).toLocaleString()}</td>
                                 <td className="px-4 py-2 border border-[#2a2a2a]">
-  <label className="flex items-center gap-3 cursor-pointer">
-    <div className="relative inline-block w-11 h-6">
-      <input
-        type="checkbox"
-        checked={api.monitor}
-        onChange={() => handleMonitorToggle(api._id, !api.monitor)}
-        className="sr-only peer"
-      />
-      <div className="w-full h-full bg-gray-600 rounded-full peer-checked:bg-green-500 transition-colors duration-300"></div>
-      <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-5"></div>
-    </div>
-    <span className={`text-sm font-medium ${api.monitor ? "text-green-500" : "text-gray-400"}`}>
-      {api.monitor ? "True" : "False"}
-    </span>
-  </label>
-</td>
+                                    <label className="flex items-center gap-3 cursor-pointer">
+                                        <div className="relative inline-block w-11 h-6">
+                                            <input
+                                                type="checkbox"
+                                                checked={api.monitor}
+                                                onChange={() => handleMonitorToggle(api._id, !api.monitor)}
+                                                className="sr-only peer"
+                                            />
+                                            <div className="w-full h-full bg-gray-600 rounded-full peer-checked:bg-green-500 transition-colors duration-300"></div>
+                                            <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-5"></div>
+                                        </div>
+                                        <span className={`text-sm font-medium ${api.monitor ? "text-green-500" : "text-gray-400"}`}>
+                                            {api.monitor ? "True" : "False"}
+                                        </span>
+                                    </label>
+                                </td>
 
                                 <td className="px-4 py-2 border border-[#2a2a2a] text-textSecondary">{api.error || "—"}</td>
                                 <td className="px-4 py-2 border border-[#2a2a2a]">{api.failureCount}</td>

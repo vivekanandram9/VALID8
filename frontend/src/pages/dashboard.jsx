@@ -14,7 +14,7 @@ function Dashboard() {
   const [responseHeaders, setResponseHeaders] = useState(null);
   const [monitor, setMonitor] = useState(false);
   const [saveResult, setSaveResult] = useState(false);
-
+  const [showAdvanced, setShowAdvanced] = useState(false);
   useEffect(() => {
     console.log("Component mounted. DOM is available");
   }, []);
@@ -95,33 +95,47 @@ function Dashboard() {
           Send
         </button>
 
-        <div className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            id="monitor"
-            checked={monitor}
-            onChange={(e) => {
-              const isChecked = e.target.checked;
-              setMonitor(isChecked);
-              if (isChecked && !saveResult) {
-                setSaveResult(true); // Auto-check Save
-              }
-            }}
-            className="w-4 h-4"
-          />
-          <label htmlFor="monitor" className="text-sm text-textSecondary">Monitor this API regularly</label>
+
+
+        {/* Monitor Toggle */}
+        <div className="flex items-center gap-2 bg-background text-foreground  p-2 border rounded-xl">
+          <label htmlFor="monitor" className="flex items-center gap-2 cursor-pointer">
+            <div className="relative">
+              <input
+                type="checkbox"
+                id="monitor"
+                checked={monitor}
+                onChange={handleMonitorchange}
+                className="sr-only peer"
+              />
+              <div className="w-11 h-6 bg-gray-600 rounded-full peer-checked:bg-green-500 transition-colors duration-300"></div>
+              <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-5"></div>
+            </div>
+            <span className="text-sm text-textSecondary">Monitor regularly</span>
+          </label>
         </div>
 
-        <div className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            id="saveResult"
-            checked={saveResult}
-            onChange={(e) => setSaveResult(e.target.checked)}
-            className="w-4 h-4"
-          />
-          <label htmlFor="saveResult" className="text-sm text-textSecondary">Save</label>
+        {/* Save Toggle */}
+        <div className="flex items-center gap-2 bg-black p-2 border rounded-xl">
+          <label htmlFor="saveResult" className="flex items-center gap-2 cursor-pointer">
+            <div className="relative">
+              <input
+                type="checkbox"
+                id="saveResult"
+                checked={saveResult}
+                onChange={(e) => setSaveResult(e.target.checked)}
+                className="sr-only peer"
+              />
+              <div className="w-11 h-6 bg-gray-600 rounded-full peer-checked:bg-blue-500 transition-colors duration-300"></div>
+              <div className="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-300 peer-checked:translate-x-5"></div>
+            </div>
+            <span className="text-sm text-textSecondary">Save</span>
+          </label>
         </div>
+
+
+
+
 
       </div>
 
@@ -137,30 +151,109 @@ function Dashboard() {
         ))}
       </div>
 
-      <div className="bg-glass p-4 border border-textSecondary rounded-lg shadow-glow">
+      <div className="bg-glass p-4 border border-textSecondary rounded-lg ">
         {activeTab === "Query Params" && (
-          <div>
-            {queryParams.map((param, index) => (
-              <div key={index}>
-                <input className="bg-transparent border border-textSecondary m-2 p-2 w-[15rem] rounded-md text-foreground placeholder-textSecondary" type="text" placeholder="key" value={param.key} onChange={(e) => { const newParams = [...queryParams]; newParams[index].key = e.target.value; setQueryParams(newParams); }} />
-                <input className="bg-transparent border border-textSecondary m-2 p-2 w-[15rem] rounded-md text-foreground placeholder-textSecondary" type="text" placeholder="value" value={param.value} onChange={(e) => { const newParams = [...queryParams]; newParams[index].value = e.target.value; setQueryParams(newParams); }} />
-                <button onClick={() => removeQueryParam(index)} className="mt-2 border border-lred bg-transparent text-lred w-[5rem] h-[2.5rem] p-1 rounded-xl hover:bg-lred hover:text-white">Remove</button>
+          <div className="space-y-4">
+            {(queryParams.length === 0 ? [{}] : queryParams).map((param, index) => (
+              <div key={index} className="grid grid-cols-3 gap-2 items-center">
+                <input
+                  className="bg-transparent border border-textSecondary p-2 rounded-md text-foreground placeholder-textSecondary"
+                  type="text"
+                  placeholder="Key"
+                  value={param.key || ""}
+                  onChange={(e) => {
+                    const newParams = [...queryParams];
+                    newParams[index] = {
+                      ...newParams[index],
+                      key: e.target.value,
+                    };
+                    setQueryParams(newParams);
+                  }}
+                />
+
+                <input
+                  className="bg-transparent border border-textSecondary p-2 rounded-md text-foreground placeholder-textSecondary"
+                  type="text"
+                  placeholder="Value"
+                  value={param.value || ""}
+                  onChange={(e) => {
+                    const newParams = [...queryParams];
+                    newParams[index] = {
+                      ...newParams[index],
+                      value: e.target.value,
+                    };
+                    setQueryParams(newParams);
+                  }}
+                />
+
+                <button
+                  onClick={() => removeQueryParam(index)}
+                  className="border border-lred text-lred p-2 rounded-md hover:bg-lred hover:text-white transition w-[5rem] ml-2"
+                >
+                  Remove
+                </button>
               </div>
             ))}
-            <button onClick={addQueryParam} className="mt-2 border border-lred bg-transparent text-lred w-[3rem] p-1 rounded-xl hover:bg-lred hover:text-white">Add</button>
+
+            <button
+              onClick={addQueryParam}
+              className="mt-2 w-[6rem] border border-lred text-lred py-2 rounded-md hover:bg-lred hover:text-white transition "
+            >
+              + Add
+            </button>
           </div>
         )}
 
+
         {activeTab === "Headers" && (
-          <div>
-            {headers.map((header, index) => (
-              <div key={index} className="flex space-x-2">
-                <input className="bg-transparent border border-textSecondary m-2 p-2 w-[15rem] rounded-md text-foreground placeholder-textSecondary" type="text" placeholder="Header key" value={header.key} onChange={(e) => { const newHeaders = [...headers]; newHeaders[index].key = e.target.value; setHeaders(newHeaders); }} />
-                <input className="bg-transparent border border-textSecondary m-2 p-2 w-[15rem] rounded-md text-foreground placeholder-textSecondary" type="text" placeholder="Header value" value={header.value} onChange={(e) => { const newHeaders = [...headers]; newHeaders[index].value = e.target.value; setHeaders(newHeaders); }} />
-                <button onClick={() => removeHeader(index)} className="mt-2 border border-lred bg-transparent text-lred w-[5rem] h-[2.5rem] p-1 rounded-xl hover:bg-lred hover:text-white">Remove</button>
+          <div className="space-y-4">
+            {(headers.length === 0 ? [{}] : headers).map((header, index) => (
+              <div key={index} className="grid grid-cols-3 gap-2 items-center">
+                <input
+                  className="bg-transparent border border-textSecondary p-2 rounded-md text-foreground placeholder-textSecondary"
+                  type="text"
+                  placeholder="Header key"
+                  value={header.key || ""}
+                  onChange={(e) => {
+                    const newHeaders = [...headers];
+                    newHeaders[index] = {
+                      ...newHeaders[index],
+                      key: e.target.value,
+                    };
+                    setHeaders(newHeaders);
+                  }}
+                />
+
+                <input
+                  className="bg-transparent border border-textSecondary p-2 rounded-md text-foreground placeholder-textSecondary"
+                  type="text"
+                  placeholder="Header value"
+                  value={header.value || ""}
+                  onChange={(e) => {
+                    const newHeaders = [...headers];
+                    newHeaders[index] = {
+                      ...newHeaders[index],
+                      value: e.target.value,
+                    };
+                    setHeaders(newHeaders);
+                  }}
+                />
+
+                <button
+                  onClick={() => removeHeader(index)}
+                  className="border border-lred text-lred p-2 rounded-md hover:bg-lred hover:text-white transition w-[5rem] ml-2"
+                >
+                  Remove
+                </button>
               </div>
             ))}
-            <button onClick={addHeader} className="mt-2 border border-lred bg-transparent text-lred w-[3rem] p-1 rounded-xl hover:bg-lred hover:text-white">Add</button>
+
+            <button
+              onClick={addHeader}
+              className="mt-2 w-[6rem] border border-lred text-lred py-2 rounded-md hover:bg-lred hover:text-white transition"
+            >
+              + Add
+            </button>
           </div>
         )}
 
@@ -169,7 +262,7 @@ function Dashboard() {
         )}
       </div>
 
-      <div className="mt-4 p-4 bg-glass border border-textSecondary rounded-lg shadow-glow h-96 overflow-y-auto text-foreground">
+      <div className="mt-4 p-4 bg-glass border border-textSecondary rounded-lg  h-96 overflow-y-auto text-foreground">
         <h3 className="text-lred font-semibold">Status: {status}</h3>
         <h4 className="text-textSecondary mt-2">Response Headers:</h4>
         <pre className="text-sm text-foreground">{responseHeaders ? JSON.stringify(responseHeaders, null, 2) : "No headers"}</pre>

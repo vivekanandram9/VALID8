@@ -8,7 +8,7 @@ export default {
         background: "#161616",
         foreground: "#b1b8c2",
         textSecondary: "#a2a9b5",
-        lyellow: "#ffff00",
+        lyellow: "#FFD95A",
         glass: "rgba(255, 255, 255, 0.05)",
         cardDark: "#1f1f1f",
         cardDarker: "#2a2a2a",
@@ -30,6 +30,15 @@ export default {
       borderColor: {
         glow: "#ffff00",
       },
+       keyframes: {
+         shine: {
+           '0%': { 'background-position': '100%' },
+           '100%': { 'background-position': '-100%' },
+         },
+       },
+       animation: {
+         shine: 'shine 5s linear infinite',
+       },
     },
   },
   plugins: [],

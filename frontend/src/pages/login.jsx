@@ -3,13 +3,16 @@ import axios from "axios";
 import logo01 from "../assets/VALID8LOGO.png";
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
 
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
+  const [success, setSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -26,18 +29,41 @@ function Login() {
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
         window.dispatchEvent(new Event("storage"));
-        alert("Login Successful");
-        navigate("/Dashboard");
+        setSuccess(true);
+        setTimeout(() => {
+          navigate("/Dashboard");
+        }, 1500);
+        
       } else {
         console.error("Login successful but no token received.");
       }
     } catch (error) {
       console.error("Error signing in:", error.response?.data || error.message);
+      setErrorMsg(error.response?.data?.message || "Login failed");
+      setSuccess(false);
     }
   };
 
   return (
     <div className="w-screen h-screen bg-[#161616] flex justify-center items-start pt-28 overflow-visible flex-row ">
+     {/* Floating Alerts */}
+<div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-md">
+  {success && (
+    <Alert
+      icon={<CheckIcon fontSize="inherit" />}
+      severity="success"
+      className="shadow-lg"
+    >
+      Login Successful!
+    </Alert>
+  )}
+  {errorMsg && (
+    <Alert severity="error" className="shadow-lg">
+      {errorMsg}
+    </Alert>
+  )}
+</div>
+
       <div className=" hidden lg:block space-y-4 text-center w-[30rem] h-[32rem] bg-white ml-9 border rounded-tl-3xl ">
          <div className="w-40 h-40 mx-auto mt-2  items-end ">
           <img className=" object-contain" src={logo01} alt="Logo" />
@@ -50,7 +76,7 @@ function Login() {
         </p>
       </div>
 
-      <div className="w-[30rem] h-[32rem] bg-[rgba(255,255,255,0.05)] border border-white/10  rounded-3xl lg:rounded-br-3xl backdrop-blur-md  text-[#b1b8c2] flex flex-col  mb-12 ml-4 lg:ml-0 mr-4 lg:rounded ">
+      <div className="w-[30rem] h-[32rem] bg-[rgba(255,255,255,0.05)] border border-white/10  rounded-3xl lg:rounded-br-3xl backdrop-blur-md  text-[#b1b8c2] flex flex-col  mb-12 ml-4 lg:ml-0 mr-4 lg:rounded-none ">
         {/* Logo */}
         <div className="w-24 h-24 mx-auto mt-2  items-end lg:hidden">
           <img className="w-full h-full object-contain" src={logo01} alt="Logo" />

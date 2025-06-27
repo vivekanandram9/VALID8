@@ -27,7 +27,7 @@ const SavedApiTable = () => {
   const totalPages = Math.ceil(total / limit);
 
   return (
-    <div className="w-full max-w-screen-xl bg-[#161616] text-[#b1b8c2] rounded-xl shadow-glow p-6 overflow-x-auto min-h-screen">
+    <div className="w-full max-w-screen-xl bg-[#161616] text-[#b1b8c2] rounded-xl p-6 overflow-x-auto min-h-screen ml-7">
       <h2 className="text-2xl font-bold mb-6 text-[#b1b8c2]">Saved API Tests</h2>
 
       <table className="w-full table-auto border border-collapse text-sm md:text-base">

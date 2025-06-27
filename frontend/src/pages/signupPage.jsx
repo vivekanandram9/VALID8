@@ -45,7 +45,7 @@ function Signup() {
         <p className=' text-5xl font-extrabold text-[#b1b8c2] '> Want clean APIs?</p>
         <p className='text-4xl font-bold text-[#d5e0f0] '>P.S. We sell soap too.</p>
       </div>
-      <div className="w-[30rem] h-[32rem] bg-[rgba(255,255,255,0.05)] border border-white/10 rounded-3xl lg:rounded-br-3xl relative ml-4 lg:ml-0 mr-4 mb-3 text-[#b1b8c2] lg:rounded ">
+      <div className="w-[30rem] h-[32rem] bg-[rgba(255,255,255,0.05)] border border-white/10 rounded-3xl lg:rounded-br-3xl relative ml-4 lg:ml-0 mr-4 mb-3 text-[#b1b8c2] lg:rounded-none ">
         {/* Logo */}
         <div className="w-24 h-24 mx-auto mt-2">
           <img className="w-full h-full object-contain lg:hidden" src={logo01} alt="Logo" />

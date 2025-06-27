@@ -42,7 +42,7 @@ const [totalLogs, setTotalLogs] = useState(0);
  
   return (
     <div className="p-6 bg-background min-h-screen text-foreground pl-[11rem]">
-      <h1 className="text-3xl font-bold mb-4">📊 Analytics Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-4">Analytics Dashboard</h1>
 
       {/* Summary Tiles */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">

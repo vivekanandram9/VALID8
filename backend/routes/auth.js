@@ -89,16 +89,26 @@ router.post("/logout", (req, res) => {
 
 router.get("/user", passport.authenticate("jwt", { session: false}), async (req, res) => {
     try {
-        console.log("Decoded user from JWT:", req.user);
-        const user = await UserModel.findById(req.user.id).select("name");
+        console.log("Decoded user from JWT:", req.user); // Check what it actually contains
+
+        const userId = req.user.id || req.user._id; // ✅ Use whichever exists
+        const user = await UserModel.findById(userId).select("name email");
+
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
         console.log("Found user in DB:", user);
-        res.json({name: user.name});
+        res.json({
+            name: user.name,
+            email: user.email
+        });
     } catch (error) {
         console.error("Error fetching user:", error);
-        res.status(500).json({error: "failed to fetch user info"});
-        
+        res.status(500).json({ error: "Failed to fetch user info" });
     }
 });
+
 router.get("/debug-token", passport.authenticate("jwt", { session: false }), (req, res) => {
   res.json({ message: "Token is valid", user: req.user });
 });
