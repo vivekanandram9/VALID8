@@ -25,7 +25,7 @@ const MonitoredApiTable = () => {
     };
     const handleMonitorToggle = async (id, newValue) => {
         try {
-            await axios.patch(`http://localhost:5000/api/monitor/${id}`, {
+            await axios.patch(`https://valid8-oypy.onrender.com/api/monitor/${id}`, {
                 monitor: newValue,
             })
             setApis((prev) =>

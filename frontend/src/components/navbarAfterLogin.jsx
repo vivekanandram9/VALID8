@@ -31,7 +31,7 @@ const NavbarUser = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const userRes = await axios.get("http://localhost:5000/api/auth/user", {
+                const userRes = await axios.get("https://valid8-oypy.onrender.com/api/auth/user", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
