@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import axios from "../utils/axiosInstance";
+import LoadingBar from "./loadingbar.jsx";
 
 const Protectedroute = () => {
   const [authChecked, setAuthChecked] = useState(false);
@@ -29,7 +30,7 @@ const Protectedroute = () => {
     checkAuth();
   }, []);
 
-  if (!authChecked) return <div>Loading...</div>;
+  if (!authChecked) return <LoadingBar />;
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/Login" />;
 };
