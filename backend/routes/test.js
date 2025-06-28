@@ -1,13 +1,14 @@
 import express, { Router } from "express";
 import axios from "axios";
 import ApiLog from "../model/apilog.js";
+import passport from "passport";
 
 const router = express.Router();
 
 
   
 
-router.post("/", async(req , res ) => {
+router.post("/", passport.authenticate("jwt", { session: false }), async(req , res ) => {
     console.log("🔥 /api/test hit");
     console.log("Payload received:", req.body);
     const {
@@ -35,6 +36,7 @@ router.post("/", async(req , res ) => {
         });*/
         if(saveResult) {
             await ApiLog.create({
+                userId: req.user._id,
                 url,
                 statusCode: response.status,
                 responseTime,
@@ -58,6 +60,7 @@ router.post("/", async(req , res ) => {
         });*/
         if(saveResult){
             await ApiLog.create({
+                userId: req.user._id,
                 url,
                 statusCode: err.response?.status || 500,
                 responseTime,

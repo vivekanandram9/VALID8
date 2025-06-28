@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from "axios";
+import axios from "../utils/axiosInstance";
 import logo01 from "../assets/VALID8LOGO.png";
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://valid8-oypy.onrender.com/api/auth/Signup", formData);
+      await axios.post("/api/auth/Signup", formData);
       alert("Signup Successful");
       navigate("/Login");
     } catch (error) {
@@ -97,7 +97,10 @@ function Signup() {
 
         {/* Login Redirect */}
         <div className="absolute bottom-6 left-44  transform -translate-x-1/2 w-[65%] text-sm flex  text-[#b1b8c2]">
-           <p>Already have an account?<a href="/Login"><span className='text-lred ml-1'>Login</span></a> </p>
+          <Link to="/Login">
+                <p>Already have an account?<span className='text-lred ml-1'>Login</span></p>
+          </Link>
+           
         </div>
       </div>
     </div>

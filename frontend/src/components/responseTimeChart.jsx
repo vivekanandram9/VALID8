@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../utils/axiosInstance";
 import {
   Chart as ChartJS,
   LineElement,
@@ -32,8 +32,8 @@ function ResponseTimeChart({ apiUrl = "" }) {
     const fetchData = async () => {
       try {
         const url = apiUrl
-          ? `https://valid8-oypy.onrender.com/api/data/response-times?url=${encodeURIComponent(apiUrl)}`
-          : "https://valid8-oypy.onrender.com/api/data/response-times";
+          ? `/api/data/response-times?url=${encodeURIComponent(apiUrl)}`
+          : "/api/data/response-times";
 
         const res = await axios.get(url);
         const labels = res.data.map((entry) => entry._id.date);
@@ -61,7 +61,7 @@ function ResponseTimeChart({ apiUrl = "" }) {
   }, [apiUrl]);
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className="w-full max-w-4xl mx-auto h-full">
       <Line data={chartData} />
     </div>
   );

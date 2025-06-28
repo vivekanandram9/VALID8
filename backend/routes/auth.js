@@ -62,7 +62,7 @@ router.post("/login", (req, res, next) => {
 });
 
 //middleware for protected routes
-const authMiddleware = (req, res, next) => {
+{/*const authMiddleware = (req, res, next) => {
     const token = req.cookies.authToken;
     if(!token) return req.status(401).json({message: "Unauthorized"});
 
@@ -71,7 +71,7 @@ const authMiddleware = (req, res, next) => {
         req.user = decoded;
         next();
     });
-};
+};*/}
 router.get("/test", (req, res) => {
   res.send("✅ Simple route is working");
 });

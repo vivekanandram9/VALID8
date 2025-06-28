@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react";
-import axios from "axios";
+import axios from "../utils/axiosInstance";
 
 const StatCard = ({ title, value, color = "bg-gray-800"}) => (
     <div className={`${color} rounded-lg p-4 shadow-md text-white `}>
@@ -11,7 +11,7 @@ const StatCard = ({ title, value, color = "bg-gray-800"}) => (
 const DashboardHeader = () => {
     const [stats, setStats] = useState({
         totalTested: 0,
-        monitered: 0,
+        monitored: 0,
         lastFailure: "N/A",
         uptime:"N/A"
     });
@@ -22,7 +22,8 @@ const DashboardHeader = () => {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const statsRes = await axios.get("https://valid8-oypy.onrender.com/api/stats");
+                
+                const statsRes = await axios.get("/api/stats");
                 setStats(statsRes.data);
             } catch (error) {
                 console.error("failed to fetch dashboard stats:", error);
@@ -32,11 +33,7 @@ const DashboardHeader = () => {
 
         const fetchUser = async () => {
             try {
-                const userRes = await axios.get("https://valid8-oypy.onrender.com/api/auth/user", {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    },
-                });
+                const userRes = await axios.get("/api/auth/user");
                 const username = userRes.data.name;
                 
                 setusername(username.split(" ")[0]);

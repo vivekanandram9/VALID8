@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
-import axios from "axios";
+import axios from "../utils/axiosInstance";
 import {
     Chart as ChartJS,
     ArcElement,
@@ -27,7 +27,7 @@ function SuccessPieChart({ apiUrl = ""}){
         const fetchData = async () => {
             try {
                 const url = apiUrl 
-                ? `https://valid8-oypy.onrender.com/api/data/success-ratio?url=${encodeURIComponent(apiUrl)}`: "https://valid8-oypy.onrender.com/api/data/success-ratio";
+                ? `/api/data/success-ratio?url=${encodeURIComponent(apiUrl)}`: "/api/data/success-ratio";
 
                 const res = await axios.get(url);
                 setChartData({

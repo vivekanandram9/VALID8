@@ -1,6 +1,6 @@
 import { useNavigate, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from "axios";
+import axios from "../utils/axiosInstance";
 
 import logo01 from '../assets/VALID8LOGO.png';
 import userlogo from '../assets/userlogo.png';
@@ -31,11 +31,7 @@ const NavbarUser = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const userRes = await axios.get("https://valid8-oypy.onrender.com/api/auth/user", {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    },
-                });
+                const userRes = await axios.get("/api/auth/user");
                 console.log(userRes);
                 const username = userRes.data.name;
                 const userEmail = userRes.data.email;

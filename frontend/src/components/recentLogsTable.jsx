@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../utils/axiosInstance";
 
 function RecentLogsTable({ apiUrl = "" }) {
   const [logs, setLogs] = useState([]);
@@ -8,8 +8,8 @@ function RecentLogsTable({ apiUrl = "" }) {
     const fetchLogs = async () => {
       try {
         const url = apiUrl
-          ? `https://valid8-oypy.onrender.com/api/data/recent-logs?url=${encodeURIComponent(apiUrl)}`
-          : "https://valid8-oypy.onrender.com/api/data/recent-logs";
+          ? `/api/data/recent-logs?url=${encodeURIComponent(apiUrl)}`
+          : "/api/data/recent-logs";
 
         const res = await axios.get(url);
         setLogs(res.data || []);

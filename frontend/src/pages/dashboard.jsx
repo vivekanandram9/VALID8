@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../utils/axiosInstance.js";
 import DashboardHeader from "../components/dashboardHeader.jsx";
 
 function Dashboard() {
@@ -48,12 +48,12 @@ function Dashboard() {
         payload.data = JSON.parse(jsonBody);
       }
 
-      const response = await axios.post("https://valid8-oypy.onrender.com/api/test", payload);
+      const response = await axios.post("/api/test", payload);
       setStatus(response.data.status);
       setResponseHeaders(response.headers);
       setResult(JSON.stringify(response.data.data, null, 2));
 
-      await axios.post("https://valid8-oypy.onrender.com/api/monitor", {
+      await axios.post("/api/monitor", {
         url: inputValue,
         monitor
       });

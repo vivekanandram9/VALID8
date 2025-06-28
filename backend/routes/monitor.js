@@ -1,10 +1,11 @@
 import express from "express";
 import axios from "axios";
 import MonitoredAPI from "../model/MonitoredAPI.js";
+import passport from "passport";
 
 const router = express.Router();
 
-router.post("/", async(req, res) =>{
+router.post("/",passport.authenticate("jwt", { session: false }), async(req, res) =>{
     console.log("incomming request body:", req.body);
     const {url, monitor, method} = req.body;
 
@@ -23,9 +24,10 @@ router.post("/", async(req, res) =>{
         });
         const responseTime = Date.now() - start;
         await MonitoredAPI.updateOne(
-            { url },
+            { url, userId:req.user._id},
             {
                 $set: {
+                    userId:req.user._id,
                     monitor: monitor ?? false,
                     method: httpMethod,
                     statusCode: response.status,
@@ -46,9 +48,10 @@ router.post("/", async(req, res) =>{
     }catch(err){
         const responseTime = Date.now() - start;
         await MonitoredAPI.updateOne(
-            { url },
+            { url, userId: req.user._id },
             {
                 $set: {
+                    userId:req.user._id,
                     monitor: monitor ?? false,
                     method: httpMethod,
                     statusCode: err.response?.status || 0,
@@ -69,17 +72,17 @@ router.post("/", async(req, res) =>{
     }
 });
 
-router.get("/", async (req, res) => {
+router.get("/", passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
 
         const skip =  (page -1) * limit;
-        const monitored = await MonitoredAPI.find()
+        const monitored = await MonitoredAPI.find({userId: req.user._id})
             .sort({ lastTestedAt: -1})
             .skip(skip)
             .limit(limit);
-        const total = await MonitoredAPI.countDocuments();
+        const total = await MonitoredAPI.countDocuments({userId: req.user._id});
         res.status(200).json({
             data : monitored,
             total,
@@ -90,13 +93,13 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.patch("/:id", async (req,res) => {
+router.patch("/:id", passport.authenticate("jwt", { session: false }), async (req,res) => {
     const { id } = req.params;
     const { monitor } = req.body;
 
     try{
         const updated = await MonitoredAPI.findByIdAndUpdate(
-            id,
+            {_id: id, userId: req.user._id},
             { monitor },
             {new : true}
         );

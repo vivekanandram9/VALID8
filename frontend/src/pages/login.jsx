@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from "axios";
+import axios from "../utils/axiosInstance";
 import logo01 from "../assets/VALID8LOGO.png";
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -25,7 +25,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://valid8-oypy.onrender.com/api/auth/Login", formData);
+      const response = await axios.post("/api/auth/Login", formData);
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
         window.dispatchEvent(new Event("storage"));
@@ -125,7 +125,7 @@ function Login() {
         {/* Redirect to Signup */}
         <div className="text-center mt-4 text-foreground transition">
           <Link to="/Signup">
-            <p>Don&apos;t have an account? <a href="/Signup"><span className='text-lred'>Signup</span></a> </p>
+            <p>Don&apos;t have an account? <span className='text-lred'>Signup</span> </p>
           </Link>
         </div>
       </div>

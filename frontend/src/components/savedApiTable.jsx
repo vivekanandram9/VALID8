@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../utils/axiosInstance";
 
 const SavedApiTable = () => {
   const [apis, setApis] = useState([]);
@@ -14,7 +14,7 @@ const SavedApiTable = () => {
   const fetchSavedApis = async (pageNum) => {
     try {
       const res = await axios.get(
-        `https://valid8-oypy.onrender.com/api/logs?page=${pageNum}&limit=${limit}`
+        `/api/logs?page=${pageNum}&limit=${limit}`
       );
       setApis(res.data.data);
       setTotal(res.data.total || res.data.data.length);

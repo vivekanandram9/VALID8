@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../utils/axiosInstance";
 
 const MonitoredApiTable = () => {
     const [apis, setApis] = useState([]);
@@ -14,7 +14,7 @@ const MonitoredApiTable = () => {
     const fetchMonitoredApis = async (pageNum) => {
         try {
             const res = await axios.get(
-                `https://valid8-oypy.onrender.com/api/monitor?page=${pageNum}&limit=${limit}`
+                `/api/monitor?page=${pageNum}&limit=${limit}`
             );
             setApis(res.data.data);
             setTotal(res.data.total || res.data.data.length);
@@ -25,7 +25,7 @@ const MonitoredApiTable = () => {
     };
     const handleMonitorToggle = async (id, newValue) => {
         try {
-            await axios.patch(`https://valid8-oypy.onrender.com/api/monitor/${id}`, {
+            await axios.patch(`/api/monitor/${id}`, {
                 monitor: newValue,
             })
             setApis((prev) =>
