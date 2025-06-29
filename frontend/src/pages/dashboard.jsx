@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "../utils/axiosInstance.js";
 import DashboardHeader from "../components/dashboardHeader.jsx";
+import MobileBlocker from "../components/mobileBlocker.jsx";
 
 function Dashboard() {
   const [dropdownValue, setDropdownValue] = useState("GET");
@@ -64,6 +65,8 @@ function Dashboard() {
   };
 
   return (
+    <>
+    <MobileBlocker/>
     <div className="dashboardContainer p-6 bg-background min-h-screen pl-[11rem] text-foreground">
       {/*<hr className="border-t border-textSecondary left-0 top-[6rem] w-full fixed" />*/}
       <DashboardHeader />
@@ -116,7 +119,7 @@ function Dashboard() {
         </div>
 
         {/* Save Toggle */}
-        <div className="flex items-center gap-2 bg-black p-2 border rounded-xl">
+        <div className="flex items-center gap-2 bg-background p-2 border rounded-xl">
           <label htmlFor="saveResult" className="flex items-center gap-2 cursor-pointer">
             <div className="relative">
               <input
@@ -270,6 +273,7 @@ function Dashboard() {
         <pre className="whitespace-pre-wrap text-sm text-foreground">{result || "Results will be displayed here..."}</pre>
       </div>
     </div>
+    </>
   );
 }
 
