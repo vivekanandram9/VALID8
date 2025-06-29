@@ -9,7 +9,7 @@ const MobileBlocker = () => {
       const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
       // Block if screen width is less than 1024px or if it's a touch device
-      setIsBlocked(width < 1024 || isTouch);
+      setIsBlocked(isTouch && width < 768);
     };
 
     checkDevice();
@@ -20,10 +20,10 @@ const MobileBlocker = () => {
   if (!isBlocked) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#161616] text-[#b1b8c2] flex items-center justify-center px-4">
-      <div className="text-center max-w-md">
-        <h1 className="text-2xl font-bold mb-4 text-white">🔒 Desktop Only</h1>
-        <p className="text-base">
+    <div className="fixed inset-0 z-50 bg-[#161616] text-[#b1b8c2] flex items-center justify-center px-4 w-full h-full">
+      <div className="text-center ">
+        <h1 className="text-5xl font-bold mb-4 text-white">🔒 Desktop Only</h1>
+        <p className="text-2xl">
           This dashboard is designed for desktop use only.
           <br />
           Please switch to a laptop or desktop device.

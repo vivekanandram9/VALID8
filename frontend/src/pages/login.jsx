@@ -31,7 +31,7 @@ function Login() {
         window.dispatchEvent(new Event("storage"));
         setSuccess(true);
         setTimeout(() => {
-          navigate("/Dashboard");
+          navigate("/");
         }, 1500);
 
       } else {
