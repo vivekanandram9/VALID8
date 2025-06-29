@@ -1,6 +1,6 @@
 # VALID8 🚀
 
-VALID8 is a full-stack API testing and monitoring tool for developers. It allows you to test APIs, track their performance over time, and view insightful analytics — all through dashboard interface.
+VALID8 is a full-stack API testing and monitoring tool. It allows you to test APIs, track their performance over time, and view insightful analytics all through dashboard interface.
 
 ---
 
