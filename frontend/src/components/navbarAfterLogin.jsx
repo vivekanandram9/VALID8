@@ -32,7 +32,7 @@ const NavbarUser = () => {
         const fetchUser = async () => {
             try {
                 const userRes = await axios.get("/api/auth/user");
-                console.log(userRes);
+               
                 const username = userRes.data.name;
                 const userEmail = userRes.data.email;
                 setUsername(username.split(" ")[0]);

@@ -6,7 +6,7 @@ import passport from "passport";
 const router = express.Router();
 
 router.post("/",passport.authenticate("jwt", { session: false }), async(req, res) =>{
-    console.log("incomming request body:", req.body);
+    
     const {url, monitor, method} = req.body;
 
     if(!url){

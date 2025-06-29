@@ -16,9 +16,9 @@ function Dashboard() {
   const [monitor, setMonitor] = useState(false);
   const [saveResult, setSaveResult] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
-  useEffect(() => {
+  {/*useEffect(() => {
     console.log("Component mounted. DOM is available");
-  }, []);
+  }, []);*/}
 
   const handleMonitorchange = (e) => {
     const checked = e.target.checked;

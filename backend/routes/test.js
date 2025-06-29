@@ -9,13 +9,13 @@ const router = express.Router();
   
 
 router.post("/", passport.authenticate("jwt", { session: false }), async(req , res ) => {
-    console.log("🔥 /api/test hit");
-    console.log("Payload received:", req.body);
+    
+    
     const {
         url, method = "GET", headers = {}, params = {}, data = null, saveResult = false
     } = req.body;
 
-    console.log("recieved test payload:" , req.body);
+    
 
     const start = Date.now();
     try{

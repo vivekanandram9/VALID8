@@ -10,14 +10,14 @@ import UserModel from "../model/user.js";
 dotenv.config();
 
 const router = express.Router();
-console.log("✅ Auth router loaded");
+
 
 
 //signup route
 
 router.post("/signup", async(req, res) => {
     try {
-        console.log("Signup request received:", req.body);
+       
         const {name, email, password} =  req.body;
 
         if (!name || !email || !password) {
@@ -61,20 +61,8 @@ router.post("/login", (req, res, next) => {
     })(req, res, next);
 });
 
-//middleware for protected routes
-{/*const authMiddleware = (req, res, next) => {
-    const token = req.cookies.authToken;
-    if(!token) return req.status(401).json({message: "Unauthorized"});
 
-    jsonwebtoken.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if(err) return res.status(403).json({ message: "Forbidden"});
-        req.user = decoded;
-        next();
-    });
-};*/}
-router.get("/test", (req, res) => {
-  res.send("✅ Simple route is working");
-});
+
 
 //protected route 
 router.get("/Dashboard", passport.authenticate("jwt" , { session: false}), (req, res) => {
@@ -89,16 +77,16 @@ router.post("/logout", (req, res) => {
 
 router.get("/user", passport.authenticate("jwt", { session: false}), async (req, res) => {
     try {
-        console.log("Decoded user from JWT:", req.user); // Check what it actually contains
+       
 
-        const userId = req.user.id || req.user._id; // ✅ Use whichever exists
+        const userId = req.user.id || req.user._id; 
         const user = await UserModel.findById(userId).select("name email");
 
         if (!user) {
             return res.status(404).json({ error: "User not found" });
         }
 
-        console.log("Found user in DB:", user);
+       
         res.json({
             name: user.name,
             email: user.email
