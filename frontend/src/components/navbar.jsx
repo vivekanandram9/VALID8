@@ -2,15 +2,13 @@ import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import logo01 from '../assets/VALID8LOGO.png';
-import Login from '../pages/login';
 
 
-import userlogo from '../assets/userlogo.png';
 
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const [loginPageOpen, setLoginPageOpen] = useState(false);
+   
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
@@ -46,12 +44,17 @@ function Navbar() {
 
             {/* Desktop nav */}
             <ul className="hidden sm:flex space-x-6 items-center text-lg">
-                <li><NavLink to="/" onClick={() => scrollTosection("hero")}>Home</NavLink></li>
-                <li><NavLink onClick={() => scrollTosection("features")}>Features</NavLink></li>
+                <li><NavLink className={({ isActive }) =>
+                    `block px-4 py-2 rounded transition-all duration-200 ${isActive ? '  font-semibold border-b-4 border-lred' : 'hover:bg-cardDark'
+                    }`
+                }  to="/" onClick={() => scrollTosection("hero")}>Home</NavLink></li>
+                <li><NavLink to="/Dashboard">Dashboard</NavLink></li>
+               
                 <li><NavLink to="/Signup">
                     <button className="p-1 w-20 border-2 rounded-3xl text-sm bg-black hover:border-lred">Sign-up</button>
                 </NavLink></li>
                 <li><NavLink to="/Login" >
+                   
                     <button className="p-1 w-20 border-2 rounded-3xl text-sm bg-black hover:border-lred">Login</button>
                 </NavLink></li>
             </ul>
@@ -59,15 +62,16 @@ function Navbar() {
 
             {/* Mobile menu */}
             {isOpen && (
-                <div className="absolute top-[5.5rem] left-1/2 transform -translate-x-1/2 w-[90%] bg-white text-black p-4 shadow-xl rounded-xl z-40">
+                <div className="absolute top-[5.5rem] left-1/2 transform -translate-x-1/2 w-[90%] bg-cardDark text-white p-4 shadow-xl rounded-xl z-40 flex flex-col items-center">
                     <NavLink to="/" onClick={() => scrollTosection("hero")} className="block py-2 hover:text-orange-800">Home</NavLink>
-                    <NavLink onClick={() => scrollTosection("features")} className="block py-2 hover:text-orange-800">Features</NavLink>
-                    <NavLink to="/dashboard" className="block py-2 hover:text-orange-800">Dashboard</NavLink>
+                    <NavLink to="/Dashboard" onClick={() => scrollTosection("hero")} className="block py-2 hover:text-orange-800">Dashboard</NavLink>
+                    
+                   
                     <NavLink to="/Signup">
-                        <button className="block p-2 w-20  rounded-3xl text-sm bg-lred text-white shadow-glow">Sign-up</button>
+                        <button className="p-1 w-20 border-2 rounded-3xl text-sm  hover:border-lred my-2">Signup</button>
                     </NavLink>
                     <NavLink to="/Login" >
-                        <button className="block p-2  w-20  rounded-3xl text-sm  bg-lred text-white shadow-glow mt-2">Login</button>
+                        <button className="p-1 w-20 border-2 rounded-3xl text-sm  hover:border-lred my-2">Login</button>
                     </NavLink>
                     
                 </div>

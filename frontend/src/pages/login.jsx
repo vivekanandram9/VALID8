@@ -33,7 +33,7 @@ function Login() {
         setTimeout(() => {
           navigate("/Dashboard");
         }, 1500);
-        
+
       } else {
         console.error("Login successful but no token received.");
       }
@@ -46,33 +46,33 @@ function Login() {
 
   return (
     <div className="w-screen h-screen bg-[#161616] flex justify-center items-start pt-28 overflow-visible flex-row ">
-     {/* Floating Alerts */}
-<div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-md">
-  {success && (
-    <Alert
-      icon={<CheckIcon fontSize="inherit" />}
-      severity="success"
-      className="shadow-lg"
-    >
-      Login Successful!
-    </Alert>
-  )}
-  {errorMsg && (
-    <Alert severity="error" className="shadow-lg">
-      {errorMsg}
-    </Alert>
-  )}
-</div>
+      {/* Floating Alerts */}
+      <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-md">
+        {success && (
+          <Alert
+            icon={<CheckIcon fontSize="inherit" />}
+            severity="success"
+            className="shadow-lg"
+          >
+            Login Successful!
+          </Alert>
+        )}
+        {errorMsg && (
+          <Alert severity="error" className="shadow-lg">
+            {errorMsg}
+          </Alert>
+        )}
+      </div>
 
       <div className=" hidden lg:block space-y-4 text-center w-[30rem] h-[32rem] bg-white ml-9 border rounded-tl-3xl ">
-         <div className="w-40 h-40 mx-auto mt-2  items-end ">
+        <div className="w-40 h-40 mx-auto mt-2  items-end ">
           <img className=" object-contain" src={logo01} alt="Logo" />
-          
+
         </div>
-        
+
 
         <p className="text-7xl font-extrabold text-wrap text-[#b1b8c2] leading-none text-left p-7">
-          Catch bugs before they crawl !! 
+          Catch bugs before they crawl !!
         </p>
       </div>
 
@@ -80,7 +80,7 @@ function Login() {
         {/* Logo */}
         <div className="w-24 h-24 mx-auto mt-2  items-end lg:hidden">
           <img className="w-full h-full object-contain" src={logo01} alt="Logo" />
-          
+
         </div>
         <h1 className='p-3 font-semibold text-2xl sm:text-3xl text-center lg:mt-6'>Welcome back to VALID8</h1>
 

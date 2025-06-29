@@ -64,7 +64,7 @@ const DashboardHeader = () => {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <StatCard title="APIs Tested" value= {stats.totalTested}/>
-                <StatCard title="Monitored APIs" value={stats.monitered} color="bg-blue-800"/>
+                <StatCard title="Monitored APIs" value={stats.monitored} color="bg-blue-800"/>
                 <StatCard title="Last Failure" value={stats.lastFailure} color="bg-red-800"/>
                 <StatCard title="Uptime Rate" value={stats.uptime} color="bg-green-800"/>
                 

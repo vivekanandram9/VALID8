@@ -140,7 +140,7 @@ function Home() {
 
 
           <motion.h1
-            className="text-4xl sm:text-7xl lg:whitespace-nowrap lg:right-[4.5rem] font-bold leading-tight relative lg:text-6xl"
+            className="text-4xl sm:text-7xl lg:whitespace-nowrap lg:right-[4.5rem] font-bold leading-tight relative lg:text-6xl "
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
@@ -267,7 +267,7 @@ function Home() {
           </div>
           <div className="bg-gradient-to-br from-black via-[#0f0f0f] to-[#1a1a1a] 
  w-full h-48 sm:h-60 flex items-center justify-center mt-4 border-0 rounded-3xl xl:w-[50%]">
-            <h1><ShinyText text="200 OK" disabled={false} speed={3} className='text-6xl sm:text-9xl font-extrabold ' /></h1>
+            <h1><ShinyText text="200 OK" disabled={false} speed={3} className='text-6xl sm:text-9xl font-extrabold  ' /></h1>
           </div>
         </div>
       </section>

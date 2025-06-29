@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import axios from "../utils/axiosInstance";
 import logo01 from "../assets/VALID8LOGO.png";
 import { Link, useNavigate } from 'react-router-dom';
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
 
 function Signup() {
+  const [success, setSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,15 +27,36 @@ function Signup() {
     e.preventDefault();
     try {
       await axios.post("/api/auth/Signup", formData);
-      alert("Signup Successful");
-      navigate("/Login");
+      setSuccess(true);
+      setTimeout(() => {
+          navigate("/Login");
+      }, 1500);
+      
     } catch (error) {
       console.error("Error signing up:", error.response?.data || error.message);
+      setErrorMsg(error.response?.data?.message || "Sign-up Failed");
+      setSuccess(false);
     }
   };
 
   return (
     <div className="w-screen h-screen bg-[#161616] flex justify-center items-start pt-28 overflow-hidden">
+       <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-md">
+              {success && (
+                <Alert
+                  icon={<CheckIcon fontSize="inherit" />}
+                  severity="success"
+                  className="shadow-lg"
+                >
+                  Login Successful!
+                </Alert>
+              )}
+              {errorMsg && (
+                <Alert severity="error" className="shadow-lg">
+                  {errorMsg}
+                </Alert>
+              )}
+            </div>
       <div className=" hidden lg:block space-y-4 text-center w-[30rem] h-[32rem] bg-white ml-9 border rounded-tl-3xl ">
         <div className="w-40 h-40 mx-auto mt-2  items-end ">
                   <img className=" object-contain" src={logo01} alt="Logo" />

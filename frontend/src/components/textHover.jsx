@@ -1,4 +1,4 @@
-"use client";
+{/*"use client";
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "motion/react";
 
@@ -114,3 +114,15 @@ export const TextHoverEffect = ({
     </svg>
   );
 };
+*/}
+import React from 'react'
+
+function TextHoverEffect() {
+  return (
+    <div>
+      <h1>VALID8</h1>
+    </div>
+  )
+}
+
+export default TextHoverEffect
