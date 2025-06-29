@@ -13,7 +13,7 @@ VALID8 is a full-stack API testing and monitoring tool. It allows you to test AP
   - Last failure timestamp
   - Success vs failure chart
   - Response time trends
-- Simple, clean interface built for developer focus
+- Simple, clean interface 
 
 
 ---
