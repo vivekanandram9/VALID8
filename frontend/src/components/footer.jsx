@@ -4,7 +4,7 @@ import logo from "../assets/VALID8LOGO.png"
 
 function Footer() {
     return (
-        <footer className="bg-black text-[#b1b8c2] py-10  lg:py-24 md:py-14 2xl:pb-40">
+        <footer className="bg-black text-[#b1b8c2] py-10  lg:py-24 md:py-14 2xl:pb-48 lg:pb-40">
             <div className="container mx-auto px-4 flex flex-col items-center space-y-6">
                 
                 {/* Logo */}
@@ -40,8 +40,8 @@ function Footer() {
             </div>
 
             {/* Hover Effect Title */}
-            <div className=" flex items-center justify-center bg-black h-[10rem] ">
-                <h1 className='font-extrabold text-7xl text-glass sm:text-9xl md:text-[11rem]    lg:text-[13rem] xl:text-[15rem] 2xl:text-[18rem] md:mt-7 2xl:mt-[5rem]'>VALID8</h1>
+            <div className=" flex items-center justify-center bg-black h-[10rem] lg:relative lg:top-[4rem]">
+                <h1 className='font-extrabold text-7xl text-glass sm:text-9xl md:text-[11rem]    lg:text-[13rem] xl:text-[15rem] 2xl:text-[18rem] md:mt-7 2xl:mt-[1rem] '>VALID8</h1>
             </div>
         </footer>
     )
