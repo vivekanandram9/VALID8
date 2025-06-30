@@ -71,11 +71,11 @@ function Dashboard() {
       {/*<hr className="border-t border-textSecondary left-0 top-[6rem] w-full fixed" />*/}
       <DashboardHeader />
 
-      <div className="flex gap-4 mb-4 mt-[2rem]">
+      <div className="flex flex-wrap gap-4 mb-4 mt-[2rem]">
         <select
           value={dropdownValue}
           onChange={(e) => setDropdownValue(e.target.value)}
-          className="px-4 py-2 bg-glass border border-textSecondary rounded-lg focus:outline-none focus:ring-2 focus:ring-lred text-foreground"
+          className="px-4 py-2 bg-glass border border-textSecondary rounded-lg focus:outline-none focus:ring-2 focus:ring-lred text-foreground w-full sm:w-auto min-w-[120px]"
         >
           <option value="GET">GET</option>
           <option value="POST">POST</option>
@@ -88,12 +88,12 @@ function Dashboard() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Enter API URL"
-          className="flex-grow px-4 py-2 bg-glass border border-textSecondary rounded-lg focus:outline-none focus:ring-2 focus:ring-lred text-foreground placeholder-textSecondary"
+          className=" flex-grow min-w-[200px] px-4 py-2 bg-glass border border-textSecondary rounded-lg focus:outline-none focus:ring-2 focus:ring-lred text-foreground placeholder-textSecondary"
         />
 
         <button
           onClick={handleSendRequest}
-          className="px-6 py-2 bg-lred text-white rounded-lg hover:bg-lred/80 focus:outline-none focus:ring-2 focus:ring-lred shadow-glow"
+          className="px-6 py-2 bg-lred text-white rounded-lg hover:bg-lred/80 focus:outline-none focus:ring-2 focus:ring-lred shadow-glow w-full sm:w-auto"
         >
           Send
         </button>
@@ -101,7 +101,7 @@ function Dashboard() {
 
 
         {/* Monitor Toggle */}
-        <div className="flex items-center gap-2 bg-background text-foreground  p-2 border rounded-xl">
+        <div className="flex items-center gap-2 bg-background p-2 border rounded-xl flex-col sm:flex-row w-full sm:w-auto">
           <label htmlFor="monitor" className="flex items-center gap-2 cursor-pointer">
             <div className="relative">
               <input
